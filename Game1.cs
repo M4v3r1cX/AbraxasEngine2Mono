@@ -8,7 +8,10 @@ namespace abraxasengine2mono;
 public class Game1 : Core
 {
     // Esta clase es la equivalente de GamePanel.java en la raiz del proyecto
+    // Para correr el proyecto, tiene que ser 
     // Mejor aprendemos la wea bien: https://docs.monogame.net/articles/tutorials/building_2d_games/04_creating_a_class_library/index.html?tabs=vscode
+
+    private Texture2D _logo;
 
     public Game1() : base("Abraxas Engine II", 1280, 720, false)
     {
@@ -24,9 +27,7 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
-        // TODO: use this.Content to load your game content here
-
-        base.LoadContent();
+        _logo = Content.Load<Texture2D>("images/logo");     // Si esta wea no funciona, hay que revisar la ruta en las propiedades del Content.mgcb!
     }
 
     protected override void Update(GameTime gameTime)
@@ -43,7 +44,9 @@ public class Game1 : Core
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        SpriteBatch.Begin();
+        SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }
